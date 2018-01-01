@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r"^posts/", include("posts.urls", namespace="posts")),
-    url(r'^groups/',include('groups.urls', namespace='groups')),
+    url(r"^groups/",include("groups.urls", namespace="groups")),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.HomePage.as_view(), name='home'),
     url(r'^accounts/', include('accounts.urls',namespace='accounts')),

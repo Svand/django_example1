@@ -1,4 +1,4 @@
-{% extends "groups/group_base.html" %}
+{% extends "../groups/group_base.html" %}
 
 {% block pregroup %}
 
@@ -14,7 +14,7 @@
       {% else %}
         <a href="{% url 'groups:join' slug=group.slug %}"
         class ='btn btn-lg btn-fill btn-warning'>
-        <span class="glyphicon glyphicon-okay-circle"></span>
+        <span class="glyphicon glyphicon-ok-circle"></span>
         Join Group</a>
     {% endif %}
   </div>

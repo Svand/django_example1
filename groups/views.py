@@ -1,7 +1,12 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 
 # Create your views here.
-from django.contrib.auth.mixins import (LoginRequiredMixin, PermissionRequiredMixin)
+from django.contrib import messages
+from django.contrib.auth.mixins import(
+    LoginRequiredMixin,
+    PermissionRequiredMixin
+)
+
 from django.core.urlresolvers import reverse
 
 from django.shortcuts import get_object_or_404
@@ -50,9 +55,15 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
             group__slug=self.kwargs.get('slug')
             ).get()
         except models.GroupMember.DoesNotExist:
-            messages.warning(self.request,'Sorry, You\'re not in this group!')
+            messages.warning(
+                self.request,
+                "You can't leave this group because you aren't in it."
+            )
         else:
-            messages.delete()
-            messages.success(self.request, 'You have left the group!' )
+            membership.delete()
+            messages.success(
+				self.request, 
+				'You have successfully left this group.' 
+			)
 
         return super().get(request, *args, **kwargs)
